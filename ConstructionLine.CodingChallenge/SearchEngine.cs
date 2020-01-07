@@ -31,11 +31,19 @@ namespace ConstructionLine.CodingChallenge
                     (!sizeIds.Any() || sizeIds.Contains(x.Size.Id)))
                 .ToList();
 
-            foreach (var colorId in shirts.Select(x => x.Color.Id).Distinct())
-                _colorCounts.Single(x => x.Color.Id == colorId).Count = shirts.Count(x => x.Color.Id == colorId);
+            foreach (var sizeCount in _sizeCounts)
+            {
+                sizeCount.Count = _shirts
+                    .Count(s => s.Size.Id == sizeCount.Size.Id
+                                && (!options.Colors.Any() || options.Colors.Select(c => c.Id).Contains(s.Color.Id)));
+            }
 
-            foreach (var sizeId in shirts.Select(x => x.Size.Id).Distinct())
-                _sizeCounts.Single(x => x.Size.Id == sizeId).Count = shirts.Count(x => x.Size.Id == sizeId);
+            foreach (var colorCount in _colorCounts)
+            {
+                colorCount.Count = _shirts
+                    .Count(c => c.Color.Id == colorCount.Color.Id
+                                && (!options.Sizes.Any() || options.Sizes.Select(s => s.Id).Contains(c.Size.Id)));
+            }
 
             return new SearchResults
             {

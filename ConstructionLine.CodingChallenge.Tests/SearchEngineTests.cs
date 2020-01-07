@@ -53,8 +53,8 @@ namespace ConstructionLine.CodingChallenge.Tests
             var results = searchEngine.Search(searchOptions);
 
             AssertResults(results.Shirts, searchOptions);
-            AssertSizeCounts(results.Shirts, searchOptions, results.SizeCounts);
-            AssertColorCounts(results.Shirts, searchOptions, results.ColorCounts);
+            AssertSizeCounts(shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(shirts, searchOptions, results.ColorCounts);
         }
 
         [Test]
@@ -78,8 +78,8 @@ namespace ConstructionLine.CodingChallenge.Tests
             var results = searchEngine.Search(searchOptions);
 
             AssertResults(results.Shirts, searchOptions);
-            AssertSizeCounts(results.Shirts, searchOptions, results.SizeCounts);
-            AssertColorCounts(results.Shirts, searchOptions, results.ColorCounts);
+            AssertSizeCounts(shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(shirts, searchOptions, results.ColorCounts);
         }
     }
 }
